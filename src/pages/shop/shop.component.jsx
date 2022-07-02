@@ -1,13 +1,19 @@
 import React from "react";
 
-import PreviewCollection from "../../components/preview-collection/preview-collection.component";
+import { Route, Switch } from "react-router";
 import CollectionsOverview from "../../components/collection-overview/collection-overview.component"
+import CollectionPage from "../collection/Collection.component";
 
-const ShopPage = ({collections}) => (
+const ShopPage = ( { match } ) => {
+    console.log(match);
+    return (
     <div className="shop-page">
-          <CollectionsOverview/>
+        <Switch>
+            <Route exact path={`${match.path}`} component={CollectionsOverview}/>
+            <Route path={`${match.path}/:collectionId`} component={CollectionPage}/>
+        </Switch>
     </div>    
 )
-
+}
 
 export default ShopPage
